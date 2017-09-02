@@ -5,7 +5,8 @@
   "repository": "https://github.com/devdigital/git-flow-standard-version.git",
   "license": "MIT",
   "scripts": {
-    "get-next-version": "node ./get-next-version.js"
+    "get-next-version": "node ./get-next-version.js",
+    "release": "standard-version"
   },
   "devDependencies": {
     "conventional-recommended-bump": "^1.0.1",
