@@ -28,6 +28,11 @@ This means that if your starting version number is `1.0.0` and you apply ten `fi
 ```
 "scripts": {
     "release": "standard-version"
+},
+"standard-version": {
+    "skip": {
+        "tag": true
+    }
 }
 ```
 
@@ -36,7 +41,7 @@ This means that if your starting version number is `1.0.0` and you apply ten `fi
 # Features, fixes, docs, performance improvements, refactoring, etc:
 
 * Create a branch off of `develop`
-* If you wish to maintain pull requests so that changes are reviewed and accepted to `develop`, then you can choose not use the `git flow` commands, and instead just push your `feature/...` or `bugfix/...` branches to a remote equivalent and create a pull request to `develop`
+* If you wish to maintain pull requests so that changes are reviewed and accepted to `develop`, then you can choose not use the `git flow` commands for feature branches, and instead just push your `feature/...` or `bugfix/...` branches to a remote equivalent and create a pull request to `develop`
 * Branches can actually be called anything except `develop`, `master`, `release/*`, or `hotfix/*`
 * Commit messages should follow conventional commits, e.g. `feat: ...` for features, and `fix: ...` for fixes
 * Other work which shouldn't affect the version number should also follow a standard commit message structure, e.g. `docs: ...` or `refactor: ...`
@@ -47,15 +52,15 @@ This means that if your starting version number is `1.0.0` and you apply ten `fi
 * See [an example script](https://github.com/devdigital/git-flow-standard-version/blob/master/get-next-version.js) that you can add to your `package.json`.
 * With the version number calculated for you, use the `git flow release start <version>` to start a release
 * This will create a `release/<version>` branch
-* Within this branch, you should then run `yarn run release` to increment the version number within `package.json` automatically to match the release branch name, as well as updating the `CHANGELOG.md` file automatically, and create a tag with the version number
+* Within this branch, you should then run `yarn run release` to increment the version number within `package.json` automatically to match the release branch name, as well as updating the `CHANGELOG.md` file automatically
 
 # Bugfixing a release
 
 * Your `release/<version>` branch should deploy to a test environment
 * Based on testing feedback, you may need to fix a bug for that release, whilst the `develop` branch has continued on into development for the next release
 * To do this you can create a branch off of your `release/<version>` branch
-* If you wish to maintain pull requests for release bug fixes, then you can push your e.g. `bugfix/...` to a remote equivalent and create a pull request into `release/<version>`
-* You should not run `standard-version` (`yarn run release`) after merging a release bugfix, as you want the release version to stay the same (the release branch name and version should be immutable)
+* If you wish to maintain pull requests for release bug fixes, then you can push your e.g. `bugfix/...` branch to a remote equivalent and create a pull request into `release/<version>`
+* **You should not** run `standard-version` (`yarn run release`) after merging a release bugfix, as you want the release version to stay the same (the release branch name and version should be immutable)
 * Any release bug fixes will be included in the version calculation for your *next* release, as well as being included in the *next* `CHANGELOG.md`
 
 # Finishing a release
@@ -70,10 +75,10 @@ This means that if your starting version number is `1.0.0` and you apply ten `fi
 * If you need to fix a critical bug in production, then you need to create a hotfix
 * These are branches off of `master` and can be created with `git flow hotfix start <version>` - as a hotfix is a *fix*, you can just increment the patch version number from the last completed release, e.g. if `master` is release 1.0.1, then create a `hotfix/1.0.2` branch
 * You must then update the `package.json` file to in the hotfix branch to match the hotfix branch version number (otherwise the `develop` branch will not have its version updated when you finish the hotfix, and the tagging will fail on the next release start) 
-* Note **you should not** run `standard-version` as you do not wish to update the `CHANGELOG.md` - the hotfix will be included in the next release `CHANGELOG.md` 
+* **You should not** run `standard-version` as you do not wish to update the `CHANGELOG.md` - the hotfix will be included in the next release `CHANGELOG.md` 
 
 # Finishing the hotfix
 
 * Once you have made the hotfix, you should then merge it into `master` and back into the `develop` branch using `git flow hotfix finish <version>`
-* This does mean you lose the ability to do pull requests on hotfixes, and it also means you need push permission to `master` to be possible. TODO: are there ways around this?
+* This does mean *you lose the ability to do pull requests on hotfixes*, and it also means you need push permission to `master` to be possible. TODO: are there ways around this?
 * **You should not** run `standard-version` when your hotfix is merged into master, as the fix will be included in the *next* release version calculation and in the *next* `CHANGELOG.md`
