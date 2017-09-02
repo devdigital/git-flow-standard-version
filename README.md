@@ -11,6 +11,7 @@ Branches:
 
 # Getting started
 
+* Run `git flow init` and configure all of the default options
 * When using `standard-version` for versioning, you need to add a `package.json` file to the root of your Git repository
 * You can install [yarn](https://yarnpkg.com/en/) and use `yarn init`
 * Add `standard-version` as a development dependency with `yarn add standard-version -D`
