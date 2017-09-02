@@ -59,16 +59,17 @@ This means that if your starting version number is `1.0.0` and you apply ten `fi
 * Once happy, you can merge your `release/<version>` branch into `master` and any changes back into `develop` with `git flow release finish <version>`
 * This also creates a tag with the version number (TODO: is this an issue with standard-version and git flow both creating a release tag?)
 * The release branch is also automatically deleted
-* Your production build should then begin from the updated `master` branch and your latest release should now be live
+* Your production build should then begin from the updated `master` branch and your latest release is now ready to deploy from `master`
 
 # Creating a hotfix
 
 * If you need to fix a critical bug in production, then you need to create a hotfix
-* These are branches off of `master` and can be created with `git flow hotfix start <version>` where `<version>` should be a a manual calculation - as a hotfix is a *fix*, you can just increment the patch version number from the last completed release, e.g. if master is release 1.0.1, then create a `hotfix/1.0.2` branch
+* These are branches off of `master` and can be created with `git flow hotfix start <version>` - as a hotfix is a *fix*, you can just increment the patch version number from the last completed release, e.g. if `master` is release 1.0.1, then create a `hotfix/1.0.2` branch
+* You must then update the `package.json` file to in the hotfix branch to match the hotfix branch version number (otherwise the `develop` branch will not have its version updated when you finish the hotfix, and the tagging will fail on the next release start) 
+* Note **you should not** run `standard-version` as you do not wish to update the `CHANGELOG.md` - the hotfix will be included in the next release `CHANGELOG.md` 
 
 # Finishing the hotfix
 
 * Once you have made the hotfix, you should then merge it into `master` and back into the `develop` branch using `git flow hotfix finish <version>`
 * This does mean you lose the ability to do pull requests on hotfixes, and it also means you need push permission to `master` to be possible. TODO: are there ways around this?
-* You should not run `standard-version` when your hotfix is merged into master, as the fix will be included in the *next* release version calculation and in the *next* `CHANGELOG.md`
-* This does mean that hotfix tags do not contain a matching `package.json` or `CHANGELOG.md` version, but if you were to use `standard-version` on the `master` branch, then it would use features and fixes across all branches (including `develop`) to calculate the next version, and that will not match your `hotfix/<version>` branch. TODO: is there a better approach to this?
+* **You should not** run `standard-version` when your hotfix is merged into master, as the fix will be included in the *next* release version calculation and in the *next* `CHANGELOG.md`
