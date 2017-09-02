@@ -30,7 +30,6 @@ Branches:
 * Branches can actually be called anything except `develop`, `master`, `release/*`, or `hotfix/*`
 * Commit messages should follow conventional commits, e.g. `feat: ...` for features, and `fix: ...` for fixes
 * Other work which shouldn't affect the version number should also follow a standard commit message structure, e.g. `docs: ...` or `refactor: ...`
-* You can install a tool such as [semantic-git-commit](https://github.com/JPeer264/node-semantic-git-commit-cli) to make commit messages easier to write
 
 # Starting a release
 
