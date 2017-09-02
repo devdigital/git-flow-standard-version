@@ -1,17 +1,17 @@
 {
   "name": "git-flow-standard-version",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": "https://github.com/devdigital/git-flow-standard-version.git",
   "license": "MIT",
   "scripts": {
-    "get-standard-version": "node ./scripts/get-standard-version.js"
+    "get-next-version": "node ./get-next-version.js"
   },
   "devDependencies": {
-    "fixture-stdout": "^0.2.1",
-    "intercept-stdout": "^0.1.2",
+    "conventional-recommended-bump": "^1.0.1",
     "nodegit": "^0.20.1",
     "nodegit-flow": "^0.4.2",
+    "semver": "^5.4.1",
     "standard-version": "^4.2.0"
   }
 }
