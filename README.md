@@ -2,7 +2,7 @@
 
 Examples of using [conventional commits](https://conventionalcommits.org/) and [standard-version](https://github.com/conventional-changelog/standard-version) with [Git flow](http://nvie.com/posts/a-successful-git-branching-model/).
 
-Branches:
+The Git flow branches that we are interested in are the following branches :
 
 * `develop` (long lived) - latest development work, deploys to a dev environment
 * `release/*` (short lived) - release candidate, bug fixes for a release, deploys to a test environment
@@ -11,7 +11,9 @@ Branches:
 
 # standard-version behaviour
 
-`standard-version` uses the format of your commit messages to determine the next [semver](http://semver.org/) version number of your release in the format major.minor.patch. If you have only applied `fix: ...` commits, then it will bump your patch number, if you have applied a `feat: ...` commit, then it will bump your minor version, and if you have applied a `BREAKING CHANGE` commit, then it will bump your major number. See [conventional commits](https://conventionalcommits.org/) for more details.
+`standard-version` uses the format of your commit messages to determine the next [semver](http://semver.org/) version number of your release in the format *major.minor.patch*. 
+
+If you have only applied `fix: ...` commits, then it will bump your *patch* number, if you have applied a `feat: ...` commit, then it will bump your *minor* version, and if you have applied a `BREAKING CHANGE` commit, then it will bump your *major* number. See [conventional commits](https://conventionalcommits.org/) for more details.
 
 This means that if your starting version number is `1.0.0` and you apply ten `fix: ...` commits, then your next version number will be `1.0.1`, not `1.0.10`. Likewise, if you applied ten `fix: ...` commits and ten `feat: ...` commits, then your next version number will be `1.1.0`.
 
@@ -28,6 +30,8 @@ This means that if your starting version number is `1.0.0` and you apply ten `fi
     "release": "standard-version"
 }
 ```
+
+> Note as we will be leaving release tags to `git flow`, we disable them in `standard-version`. `standard-version` will take care of bumping our `package.json` file with the version number, and updating the `CHANGELOG.md` file with changes in each release.
 
 # Features, fixes, docs, performance improvements, refactoring, etc:
 
