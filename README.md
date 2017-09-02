@@ -9,6 +9,12 @@ Branches:
 * `master` (long lived) - last release, deploys to a production environment
 * `hotfix/*` (short lived) - urgent fixes to production
 
+# standard-version behaviour
+
+`standard-version` uses the format of your commit messages to determine the next [semver](http://semver.org/) version number of your release in the format major.minor.patch. If you have only applied `fix: ...` commits, then it will bump your patch number, if you have applied a `feat: ...` commit, then it will bump your minor version, and if you have applied a `BREAKING CHANGE` commit, then it will bump your major number. See [conventional commits](https://conventionalcommits.org/) for more details.
+
+This means that if your starting version number is `1.0.0` and you apply ten `fix: ...` commits, then your next version number will be `1.0.1`, not `1.0.10`. Likewise, if you applied ten `fix: ...` commits and ten `feat: ...` commits, then your next version number will be `1.1.0`.
+
 # Getting started
 
 * Run `git flow init` and configure all of the default options
