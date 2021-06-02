@@ -9,10 +9,8 @@
     "release": "standard-version"
   },
   "devDependencies": {
-    "conventional-recommended-bump": "^1.0.1",
-    "nodegit": "^0.20.1",
-    "nodegit-flow": "^0.4.2",
-    "semver": "^5.4.1",
-    "standard-version": "^4.2.0"
+    "conventional-recommended-bump": "^6.1.0",
+    "semver": "^7.3.5",
+    "standard-version": "^9.3.0"
   }
 }
