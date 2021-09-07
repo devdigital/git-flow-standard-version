@@ -11,7 +11,7 @@ The Git flow branches that we are interested in are the following branches :
 
 # standard-version behaviour
 
-`standard-version` uses the format of your commit messages to determine the next [semver](http://semver.org/) version number of your release in the format *major.minor.patch*. 
+`standard-version` uses the format of your commit messages to determine the next [semver](http://semver.org/) version number of your release in the format *major.minor.patch*.
 
 If you have only applied `fix: ...` commits, then it will bump your *patch* number, if you have applied a `feat: ...` commit, then it will bump your *minor* version, and if you have applied a `BREAKING CHANGE` commit, then it will bump your *major* number. See [conventional commits](https://conventionalcommits.org/) for more details.
 
@@ -27,12 +27,12 @@ This means that if your starting version number is `1.0.0` and you apply ten `fi
 
 ```
 "scripts": {
-    "release": "standard-version"
+	"release": "standard-version"
 },
 "standard-version": {
-    "skip": {
-        "tag": true
-    }
+	"skip": {
+		"tag": true
+	}
 }
 ```
 
@@ -48,7 +48,7 @@ This means that if your starting version number is `1.0.0` and you apply ten `fi
 
 # Starting a release
 
-* Do not choose a version number yourself for your `release/*` branch, instead get the next version number based from your conventional commits. 
+* Do not choose a version number yourself for your `release/*` branch, instead get the next version number based from your conventional commits.
 * See [an example script](https://github.com/devdigital/git-flow-standard-version/blob/master/get-next-version.js) that you can add to your `package.json`.
 * With the version number calculated for you, use the `git flow release start <version>` to start a release
 * This will create a `release/<version>` branch
@@ -65,8 +65,8 @@ This means that if your starting version number is `1.0.0` and you apply ten `fi
 
 # Finishing a release
 
-* Once happy, you can merge your `release/<version>` branch into `master` and any changes back into `develop` with `git flow release finish <version>`
-* This also creates a tag with the version number (TODO: is this an issue with standard-version and git flow both creating a release tag?)
+* Once happy, you can merge your `release/<version>` branch into `master` and any changes back into `develop` with `git flow release finish -n <version>`
+* Both standard-version and git flow creates tags by default, but adding `-n` to git flow prevents a duplicate tag from being created.
 * The release branch is also automatically deleted
 * Your production build should then begin from the updated `master` branch and your latest release is now ready to deploy from `master`
 
@@ -74,8 +74,8 @@ This means that if your starting version number is `1.0.0` and you apply ten `fi
 
 * If you need to fix a critical bug in production, then you need to create a hotfix
 * These are branches off of `master` and can be created with `git flow hotfix start <version>` - as a hotfix is a *fix*, you can just increment the patch version number from the last completed release, e.g. if `master` is release 1.0.1, then create a `hotfix/1.0.2` branch
-* You must then update the `package.json` file to in the hotfix branch to match the hotfix branch version number (otherwise the `develop` branch will not have its version updated when you finish the hotfix, and the tagging will fail on the next release start) 
-* **You should not** run `standard-version` as you do not wish to update the `CHANGELOG.md` - the hotfix will be included in the next release `CHANGELOG.md` 
+* You must then update the `package.json` file to in the hotfix branch to match the hotfix branch version number (otherwise the `develop` branch will not have its version updated when you finish the hotfix, and the tagging will fail on the next release start)
+* **You should not** run `standard-version` as you do not wish to update the `CHANGELOG.md` - the hotfix will be included in the next release `CHANGELOG.md`
 
 # Finishing the hotfix
 
